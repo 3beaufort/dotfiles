@@ -38,6 +38,7 @@ macos-core: FORCE
 	$(call TAP,  "homebrew/services")
 	$(call TAP,  "homebrew/cask")
 	$(call TAP,  "homebrew/cask-versions")
+	
 	@echo 'cask_args appdir: "~/Applications", require_sha: true' >>$(BREWFILE)
 	
 # 	GNU core utilities (those that come with macOS are outdated)
@@ -400,7 +401,7 @@ media: audio foto video
 
 outdoor:
 	$(call BREW, "gpsbabel")
-	
+
 	$(call CASK, "routeconverter")
 
 	$(call MAS,  "Garmin BaseCamp", "411052274")
