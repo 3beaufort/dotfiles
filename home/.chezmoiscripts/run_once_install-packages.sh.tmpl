@@ -4,14 +4,14 @@
 # Makefile hash: {{ include "./scripts/Makefile" | sha256sum }}
 
 {{ if eq .chezmoi.os "darwin" -}}
-make clean
-make macos-core
-make desktop
+cd ~/.bundles && make clean
+cd ~/.bundles make macos-core
+cd ~/.bundles make desktop
 #make all
 
 {{ else if eq .chezmoi.os "linux" -}}
-make clean
-make linux
+cd ~/.bundles make clean
+cd ~/.bundles make linux
 
 {{ end -}}
 
