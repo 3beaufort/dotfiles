@@ -1,0 +1,4 @@
+# Format:
+# Name=id
+uBlock Origin=cjpalhdlnbpafiamejdnhcphjbkeiagm
+Refined GitHub=hlepfoohegkhhmjieoechaddaejaokhf

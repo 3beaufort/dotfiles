@@ -1,0 +1,165 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$fill \
+$package\
+$cmake\
+$python\
+$rust\
+$golang\
+$lua\
+$java\
+$nodejs\
+$ruby\
+$terraform\
+$docker_context\
+$helm\
+$kubernetes\
+$aws\
+$gcloud\
+$env_var\
+$line_break\
+$battery\
+$time\
+$cmd_duration\
+$status\
+$sudo\
+$character"""
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[](bold white)"
+error_symbol = "[](bold red)"
+vicmd_symbol = "[](bold white)"
+
+[directory]
+style = "bold white"
+format = "[$path]($style) "
+truncation_length = 10
+
+[status]
+style = "red"
+symbol = ""
+format = "[$status]($style) "
+disabled = false
+
+[sudo]
+style = "bold bright-yellow"
+format = "[$symbol]($style)"
+symbol = ""
+disabled = false
+
+[cmd_duration]
+style = "white"
+format = " [$duration]($style)\n"
+min_time = 30_000
+
+[time]
+style = " white"
+format = " [$time]($style)\n"
+disabled = false
+
+[battery]
+format = "[$symbol $percentage]($style)\n"
+
+[[battery.display]]
+style = "bold red"
+threshold = 10
+
+[[battery.display]]
+style = "bold orange"
+threshold = 20
+
+[[battery.display]]
+style = "bold yellow"
+threshold = 30
+
+[jobs]
+disabled = true
+
+[git_branch]
+style = "bold #9E9E9E"
+symbol = " "
+format = "[$symbol$branch]($style) "
+only_attached = true
+
+[git_commit]
+style = "bold #9E9E9E"
+tag_symbol = " "
+format = "[($tag )\\($hash\\)]($style) "
+only_detached = true
+tag_disabled = false
+
+[git_state]
+style = "bold #9E9E9E"
+
+[git_status]
+style = "#9E9E9E"
+format = "([($ahead_behind )($conflicted )($staged )($deleted )($renamed )($modified )($stashed )($untracked )]($style))"
+conflicted = ""
+ahead = "${count}"
+behind = "${count}"
+staged = "${count}"
+deleted = "${count}"
+modified = "${count}"
+renamed = "${count}"
+untracked = "${count}"
+diverged = "${ahead_count} ${behind_count}"
+stashed = "${count}"
+
+[kubernetes]
+symbol = " "
+format = "[$symbol$context \\($namespace\\)](bold cyan) "
+disabled = false
+
+[gcloud]
+style = "bold #1a73e8"
+symbol = "  "
+format = "[$symbol$account(@$domain) (\\($region\\))]($style) "  
+
+[aws]
+style = "bold #ff9900"
+symbol = "  "
+format = "[$symbol($profile )(\\($region\\))]($style) "
+
+[package]
+symbol = " "
+format = "[$symbol$version]($style) "
+
+[python]
+style = "bold green"
+symbol = " "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[rust]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[java]
+style = "bold purple"
+symbol = " "
+format = "[${symbol}(${version} )]($style)"
+
+[kotlin]
+symbol = "🅺 "
+format = "[$symbol($version )]($style)"
+
+[lua]
+style = "bold blue"
+symbol = " "
+format = "[${symbol}(${version} )]($style)"
+
+[terraform]
+symbol = " "
+format = '[${symbol}(${version} )(\(${workspace}\) )]($style)'

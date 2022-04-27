@@ -1,0 +1,41 @@
+{{/* boolean features */}}
+{{- $user       := promptString "user" -}}
+{{- $email      := promptString "email" -}}
+{{- $work_email := promptString "work_email" -}}
+{{- $git_user   := promptString "git_user" -}}
+{{- $git_email  := promptString "git_email" -}}
+{{- $headless   := false -}} {{/* true if this machine does not have a screen and keyboard */}}
+{{- $personal   := true -}}  {{/* true if this machine should have personal secrets from Enpass */}}
+{{- "" -}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{-   $hostname = $computerName -}}
+{{- end -}}
+
+{{/* user */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $user := output "id" "-un" | trim -}}
+{{- end -}}
+
+[diff]
+    pager = "delta --dark"
+    exclude = ["externals"]
+
+[data]
+    user        = {{ $user | quote }}
+    email       = {{ $email | quote }}
+    work_email  = {{ $work_email | quote }}
+    git_user    = {{ $git_user | quote }}
+    git_email   = {{ $git_email | quote }}
+    hostname    = {{ $hostname | quote }}
+    headless    = {{ $headless }}
+    personal    = {{ $personal }}
+    osid        = {{ $osID | quote }}

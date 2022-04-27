@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Include a hash of the Makefile so that a make happens on change of it
+# Makefile hash: {{ include "./scripts/Makefile" | sha256sum }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+make clean
+make macos-core
+make desktop
+#make all
+
+{{ else if eq .chezmoi.os "linux" -}}
+make clean
+make linux
+
+{{ end -}}
+
+brew bundle --file=~/.bundles/brewfile
